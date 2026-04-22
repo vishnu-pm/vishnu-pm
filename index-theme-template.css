@@ -1,0 +1,120 @@
+/* Import your theme fonts here */
+@import url('https://fonts.googleapis.com/css2?family=YOUR_DISPLAY_FONT:wght@400;700;900&family=YOUR_BODY_FONT:wght@300;400;500;600;700&family=YOUR_MONO_FONT:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg-deep text-text-primary font-body;
+  overflow-x: hidden;
+  cursor: none; /* Remove if not using custom cursor */
+  position: relative;
+}
+
+/* Add your theme-specific overlays, textures, or effects here */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Add your background effects */
+  background-image: radial-gradient(circle at 20% 80%, transparent 50%, rgba(YOUR_ACCENT_RGB, 0.03) 51%, transparent 55%);
+  background-size: 200% 200%;
+  animation: grain 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-5%, -10%); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #YOUR_DEEP_BG; }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(180deg, #YOUR_ACCENT_COLOR 0%, #YOUR_LIGHT_ACCENT 100%);
+  border-radius: 3px;
+}
+
+/* Custom cursor (if using) */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #YOUR_ACCENT_COLOR;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(YOUR_ACCENT_RGB, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+/* Utility component classes */
+@layer components {
+  .section-label {
+    @apply font-mono text-[0.7rem] tracking-[0.22em] uppercase text-accent mb-3;
+  }
+
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-bold text-text-primary;
+  }
+
+  .section-title em {
+    @apply text-accent not-italic;
+    font-style: italic;
+  }
+
+  .accent-line {
+    @apply h-1 bg-gradient-to-r from-transparent via-accent to-transparent w-24 mx-auto;
+  }
+
+  .card-base {
+    @apply bg-bg-card border border-accent-border rounded-lg p-6 transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-2 px-7 py-3
+           bg-accent text-bg-deep font-semibold text-sm tracking-widest uppercase
+           transition-all duration-200
+           hover:bg-accent-light hover:shadow-accent-md hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3
+           border border-accent-border text-text-primary font-medium text-sm tracking-widest uppercase
+           transition-all duration-200
+           hover:border-accent hover:text-accent hover:-translate-y-0.5;
+  }
+
+  .tag-chip {
+    @apply font-mono text-[0.68rem] text-text-muted border border-accent-border px-2.5 py-0.5 tracking-wider;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent;
+  }
+}

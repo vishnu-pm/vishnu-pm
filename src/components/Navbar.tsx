@@ -1,94 +1,135 @@
-import { useEffect, useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
-import { Link } from 'react-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react'
+import { Link } from 'react-scroll'
+import { motion, AnimatePresence } from 'framer-motion'
+import { HiMenuAlt3, HiX } from 'react-icons/hi'
 
-const navLinks = [
-  { name: 'Home', to: 'home' },
-  { name: 'About', to: 'about' },
-  { name: 'Skills', to: 'skills' },
-  { name: 'Experience', to: 'experience' },
-  { name: 'Projects', to: 'projects' },
-  { name: 'Education', to: 'education' },
-  { name: 'Contact', to: 'contact' },
-];
+const NAV_LINKS = ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Education', 'Certifications', 'Contact']
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('Home')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40)
+      
+      // Update active section based on scroll position
+      const sections = NAV_LINKS.map(link => link.toLowerCase())
+      const scrollPosition = window.scrollY + 100
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i])
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(NAV_LINKS[i])
+          break
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur border-b border-slate-200/60 ${
-        scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/60'
-      }`}
+    <motion.nav
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300
+        ${scrolled ? 'border-b border-accent/20 nav-blur' : 'bg-transparent'}`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link
-          to="home"
-          smooth
-          duration={500}
-          className="text-xl font-semibold text-primary cursor-pointer"
-        >
-          Vishnu PM
-        </Link>
-
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth
-              duration={500}
-              offset={-80}
-              className="cursor-pointer text-slate-600 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
+        {/* Premium Logo */}
+        <div className="flex items-center">
+          <Link
+            to="home"
+            smooth
+            duration={800}
+            className="group flex items-center gap-2 cursor-pointer"
+          >
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center text-black font-bold text-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-all duration-300">
+              VP
+            </div>
+            <span className="font-display text-xl font-bold text-white hidden sm:block">
+              Vishnu PM
+            </span>
+          </Link>
         </div>
 
-        <button
-          className="md:hidden text-slate-700"
-          onClick={() => setIsOpen((v) => !v)}
-          aria-label="Toggle navigation"
-        >
-          {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-        </button>
-      </div>
+        {/* Desktop Navigation - Centered */}
+        <div className="hidden lg:flex items-center justify-center flex-1">
+          <div className="flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link}
+                to={link.toLowerCase()}
+                smooth
+                spy
+                offset={-80}
+                duration={800}
+                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 cursor-pointer
+                  ${activeSection === link 
+                    ? 'text-accent' 
+                    : 'text-gray-300 hover:text-white'
+                  }`}
+              >
+                {link}
+                <motion.div
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full"
+                  initial={activeSection === link ? { scaleX: 1 } : { scaleX: 0 }}
+                  animate={{ scaleX: activeSection === link ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden border-t border-slate-200 bg-white/95"
-          >
-            <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  smooth
-                  duration={500}
-                  offset={-80}
-                  onClick={() => setIsOpen(false)}
-                  className="py-2 text-slate-700 hover:text-primary cursor-pointer text-sm font-medium"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-};
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="lg:hidden w-10 h-10 rounded-lg bg-bg-card border border-white/10 flex items-center justify-center text-gray-300 hover:bg-accent/10 hover:text-accent transition-all cursor-pointer"
+        >
+          {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+        </button>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-full left-0 right-0 bg-bg-deep/95 backdrop-blur-lg border-t border-accent/20 lg:hidden"
+            >
+              <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+                <div className="flex flex-col gap-4">
+                  {NAV_LINKS.map((link) => (
+                    <Link
+                      key={link}
+                      to={link.toLowerCase()}
+                      smooth
+                      spy
+                      offset={-80}
+                      duration={800}
+                      onClick={() => setOpen(false)}
+                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-all cursor-pointer
+                        ${activeSection === link 
+                          ? 'bg-accent/20 text-accent' 
+                          : 'text-gray-300 hover:bg-bg-card hover:text-white'
+                        }`}
+                    >
+                      {link}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
+  )
+}

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS VARIABLES ── */
+:root {
+  --bg-deep:    #0a0d14;
+  --bg-surface: #111520;
+  --bg-card:    #161b2a;
+  --gold:       #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim:   rgba(201,168,76,0.15);
+  --gold-border:rgba(201,168,76,0.2);
+  --blue-glow:  #2a6ef5;
+  --ink:        #f0ead8;
+  --ink-muted:  #8890a4;
+}
+
+/* ── BASE ── */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ── CUSTOM SCROLLBAR ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ── CUSTOM CURSOR ── */
+.cursor-dot {
+  position: fixed;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s, opacity 0.2s;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+  opacity: 0.5;
+}
+
+/* ── UTILITY CLASSES ── */
+@layer components {
+  .section-label {
+    @apply font-mono text-[0.7rem] tracking-[0.22em] uppercase text-primary mb-3;
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-bold text-ink-primary;
+  }
+
+  .section-title em {
+    @apply text-primary italic not-italic;
+    font-style: italic;
+  }
+
+  .gold-line {
+    @apply block w-10 h-[2px] bg-primary mb-6;
+  }
+
+  .card-base {
+    @apply bg-bg-card border border-primary/20 transition-colors duration-200 hover:bg-slate-700;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3
+           bg-primary text-white font-semibold text-sm tracking-widest uppercase
+           transition-all duration-200
+           hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5
+           cursor-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3
+           border border-primary text-slate-900 font-medium text-sm tracking-widest uppercase
+           transition-all duration-200
+           hover:border-primary hover:text-primary hover:-translate-y-0.5
+           cursor-none;
+  }
+
+  .tag-chip {
+    @apply font-mono text-[0.68rem] text-ink-muted border border-white/10 px-2.5 py-0.5 tracking-wider;
+  }
+}
