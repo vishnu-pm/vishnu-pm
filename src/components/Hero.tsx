@@ -36,7 +36,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p {...fadeUp(0.5)} className="text-ink-muted text-base leading-relaxed max-w-lg mb-10">
-            <span className="text-ink-primary font-medium">Full Stack .NET Developer</span> with 1.5+ years of
+            <span className="text-ink-primary font-medium">Full Stack .NET Developer</span> with 2.5 years of
             experience building ERP systems, billing software, and scalable business applications
             using ASP.NET Core, ASP.NET MVC, C#, SQL Server, and Entity Framework.
           </motion.p>

@@ -62,7 +62,7 @@ export const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-lg text-gray-300 max-w-2xl leading-relaxed"
         >
-          Full Stack .NET Developer with <span className="text-white font-medium">1.5+ years</span> of experience building 
+          Full Stack .NET Developer with <span className="text-white font-medium">2.5 years</span> of experience building 
           <span className="text-white font-medium"> ERP systems</span>, 
           <span className="text-white font-medium"> billing software</span>, and scalable business applications using 
           <span className="text-white font-medium"> ASP.NET Core</span>, 
@@ -124,7 +124,7 @@ export const Hero = () => {
         >
           <div className="text-center">
             <div className="text-3xl lg:text-4xl font-bold text-white">
-              <Counter end={1} suffix=".5+" />
+              <Counter end={2} suffix=".5+" />
               <span className="text-accent">+</span>
             </div>
             <div className="text-sm text-gray-400 mt-1">Years Experience</div>

@@ -55,7 +55,7 @@ export const About = () => {
           >
             <div className="prose prose-invert max-w-none">
               <p className="text-lg text-gray-300 leading-relaxed">
-                Full Stack .NET Developer with <span className="text-white font-semibold">1.5+ years</span> of experience building 
+                Full Stack .NET Developer with <span className="text-white font-semibold">2.5 years</span> of experience building 
                 <span className="text-white font-semibold"> ERP systems</span>, 
                 <span className="text-white font-semibold"> billing software</span>, and scalable business applications using 
                 <span className="text-white font-semibold"> ASP.NET Core</span>, 

@@ -180,7 +180,7 @@ export const Experience = () => (
         className="text-center mt-16"
       >
         <div className="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-gradient-to-r from-accent/20 to-accent/10 border border-accent/30">
-          <span className="text-accent font-medium">1.5+ Years Professional Experience</span>
+          <span className="text-accent font-medium">2.5 Years Professional Experience</span>
           <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
           <span className="text-accent font-medium">2 Companies</span>
         </div>

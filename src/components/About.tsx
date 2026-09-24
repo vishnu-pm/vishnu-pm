@@ -51,7 +51,7 @@ export default function About() {
               { label: 'Name',       value: 'Vishnu PM' },
               { label: 'Role',       value: 'Full Stack .NET Dev' },
               { label: 'Location',   value: 'Kerala, India' },
-              { label: 'Experience', value: '1.5+ Years' },
+              { label: 'Experience', value: '2.5 Years' },
               { label: 'Focus',      value: 'ERP / Billing Systems' },
               { label: 'Status',     value: 'Open to Opportunities' },
             ].map(item => (
