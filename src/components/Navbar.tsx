@@ -39,7 +39,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300
         ${scrolled ? 'border-b border-accent/20 nav-blur' : 'bg-transparent'}`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex items-center justify-between h-24">
         {/* Premium Logo */}
         <div className="flex items-center">
           <Link
@@ -48,10 +48,10 @@ export default function Navbar() {
             duration={800}
             className="group flex items-center gap-2 cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center text-black font-bold text-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-all duration-300">
+            <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-all duration-300">
               VP
             </div>
-            <span className="font-display text-xl font-bold text-white hidden sm:block">
+            <span className="font-display text-2xl font-bold text-white hidden sm:block">
               Vishnu PM
             </span>
           </Link>
@@ -59,7 +59,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation - Centered */}
         <div className="hidden lg:flex items-center justify-center flex-1">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-10">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link}
@@ -68,7 +68,7 @@ export default function Navbar() {
                 spy
                 offset={-80}
                 duration={800}
-                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 cursor-pointer
+                className={`relative px-4 py-2 text-base font-medium transition-all duration-300 cursor-pointer
                   ${activeSection === link 
                     ? 'text-accent' 
                     : 'text-gray-300 hover:text-white'
@@ -89,9 +89,9 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden w-10 h-10 rounded-lg bg-bg-card border border-white/10 flex items-center justify-center text-gray-300 hover:bg-accent/10 hover:text-accent transition-all cursor-pointer"
+          className="lg:hidden w-12 h-12 rounded-lg bg-bg-card border border-white/10 flex items-center justify-center text-gray-300 hover:bg-accent/10 hover:text-accent transition-all cursor-pointer"
         >
-          {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+          {open ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
         </button>
 
         {/* Mobile Menu */}
@@ -104,7 +104,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="absolute top-full left-0 right-0 bg-bg-deep/95 backdrop-blur-lg border-t border-accent/20 lg:hidden"
             >
-              <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+              <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-6">
                 <div className="flex flex-col gap-4">
                   {NAV_LINKS.map((link) => (
                     <Link

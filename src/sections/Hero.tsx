@@ -28,39 +28,36 @@ const Counter = ({ end, duration = 2, suffix = '' }: { end: number; duration?: n
 
 export const Hero = () => {
   return (
-    <section id="home" className="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 lg:p-24 relative" style={{ backgroundColor: '#080a0f' }}>
+    <section id="home" className="min-h-[calc(100vh-96px)] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center px-6 lg:px-12 py-16 lg:py-20 relative max-w-7xl mx-auto" style={{ backgroundColor: '#080a0f' }}>
       {/* Premium Glow Effects */}
       <div className="absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)' }} />
       <div className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)' }} />
 
-      <div className="space-y-8 relative z-10">
+      <div className="space-y-6 lg:space-y-8 relative z-10 max-w-2xl">
         {/* Premium Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-3 bg-accent/10 border border-accent/25 text-accent px-4 py-2 rounded-full text-sm font-medium tracking-wider uppercase"
+          className="inline-flex items-center gap-3 bg-accent/10 border border-accent/25 text-accent px-5 py-2.5 rounded-full text-base font-medium tracking-wider uppercase"
         >
           <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
           Full Stack .NET Developer
         </motion.div>
         
         {/* Premium Title with Animation */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+        <h1
+          className="text-5xl lg:text-7xl font-bold text-white leading-tight hero-title"
         >
           Hi, I'm <span className="text-accent">Vishnu PM</span>
-        </motion.h1>
+        </h1>
         
         {/* Enhanced Professional Summary */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-lg text-gray-300 max-w-2xl leading-relaxed"
+          className="text-xl text-gray-300 max-w-2xl leading-relaxed"
         >
           Full Stack .NET Developer with <span className="text-white font-medium">2.5 years</span> of experience building 
           <span className="text-white font-medium"> ERP systems</span>, 
@@ -82,7 +79,7 @@ export const Hero = () => {
           {['ERP Systems', 'ASP.NET Core', 'SQL Server', 'Azure'].map((tech, idx) => (
             <span
               key={tech}
-              className="px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium"
+              className="px-5 py-2.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-base font-medium"
             >
               {tech}
             </span>
@@ -98,9 +95,9 @@ export const Hero = () => {
         >
           <button
             onClick={() => window.open('/Vishnu_De.pdf', '_blank')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-black font-bold hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-accent text-black font-bold hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 cursor-pointer"
           >
-            <FiDownload size={18} />
+            <FiDownload size={20} />
             Download Resume
           </button>
           <Link
@@ -108,9 +105,9 @@ export const Hero = () => {
             smooth
             duration={800}
             offset={-80}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-accent/50 text-accent font-bold hover:bg-accent/10 transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border border-accent/50 text-accent font-bold hover:bg-accent/10 transition-all duration-300 cursor-pointer"
           >
-            <FiBriefcase size={18} />
+            <FiBriefcase size={20} />
             View Projects
           </Link>
         </motion.div>
@@ -123,25 +120,25 @@ export const Hero = () => {
           className="flex gap-8 lg:gap-12 pt-8 border-t border-white/10"
         >
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-white">
+            <div className="text-4xl lg:text-5xl font-bold text-white">
               <Counter end={2} suffix=".5+" />
               <span className="text-accent">+</span>
             </div>
-            <div className="text-sm text-gray-400 mt-1">Years Experience</div>
+            <div className="text-base text-gray-400 mt-2">Years Experience</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-white">
+            <div className="text-4xl lg:text-5xl font-bold text-white">
               <Counter end={20} suffix="+" />
               <span className="text-accent">+</span>
             </div>
-            <div className="text-sm text-gray-400 mt-1">ERP Modules</div>
+            <div className="text-base text-gray-400 mt-2">ERP Modules</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl lg:text-4xl font-bold text-white">
+            <div className="text-4xl lg:text-5xl font-bold text-white">
               <Counter end={15} suffix="+" />
               <span className="text-accent">+</span>
             </div>
-            <div className="text-sm text-gray-400 mt-1">Tech Stack</div>
+            <div className="text-base text-gray-400 mt-2">Tech Stack</div>
           </div>
         </motion.div>
       </div>
@@ -151,7 +148,7 @@ export const Hero = () => {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="relative max-w-sm mx-auto lg:mx-0"
+        className="relative max-w-md lg:max-w-lg mx-auto lg:mx-0"
       >
         {/* Premium Glow Behind Image */}
         <div className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-accent/5 rounded-2xl blur-xl"></div>
@@ -162,7 +159,7 @@ export const Hero = () => {
             <img
               src="/profile_picture.jpg.png"
               alt="Vishnu PM"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center transition-transform duration-500 ease hover:scale-105"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                 e.currentTarget.style.display = 'none'
                 const nextElement = e.currentTarget.nextElementSibling as HTMLElement
